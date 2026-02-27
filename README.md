@@ -1,2 +1,0 @@
-# kcs-technology
-kcs-technology
