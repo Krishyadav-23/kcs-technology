@@ -1,23 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KCS Technology</title>
-
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0d1117;
   color: white;
+  overflow-x: hidden;
+
+  /* Cyber Background */
+  background: linear-gradient(120deg, #020024, #090979, #00d4ff);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+}
+
+/* Animated background gradient */
+@keyframes gradientMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* Cyber grid overlay */
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
 }
 
 /* Navigation */
 nav {
-  background: #0a2540;
+  background: rgba(10, 37, 64, 0.9);
   padding: 15px;
   text-align: center;
+  backdrop-filter: blur(10px);
 }
 
 nav a {
@@ -27,9 +45,9 @@ nav a {
   font-weight: bold;
   transition: 0.3s;
 }
-
 nav a:hover {
   color: white;
+  text-shadow: 0 0 8px #00d4ff;
 }
 
 /* Sections */
@@ -38,33 +56,32 @@ section {
   display: none;
   animation: fadeIn 0.6s ease-in;
 }
-
 .active {
   display: block;
 }
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {opacity: 0; transform: translateY(15px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
-/* Course Boxes */
+/* Cards */
 .card {
-  background: #161b22;
+  background: rgba(22, 27, 34, 0.9);
   padding: 20px;
   margin: 15px;
   border-radius: 10px;
   display: inline-block;
   width: 260px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: 0.3s;
+  border: 1px solid rgba(88,166,255,0.2);
 }
-
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 15px #58a6ff;
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 0 20px #00d4ff;
 }
 
-/* Form */
+/* Inputs */
 input {
   padding: 10px;
   margin: 10px 0;
@@ -73,115 +90,36 @@ input {
   border: none;
 }
 
+/* Buttons */
 button {
   padding: 10px 20px;
-  background: #58a6ff;
+  background: #00d4ff;
   border: none;
   border-radius: 5px;
-  color: white;
+  color: black;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+button:hover {
+  background: #00aaff;
+  transform: scale(1.05);
 }
 
-button:hover {
-  background: #1f6feb;
+/* WhatsApp Button */
+.whatsapp-btn {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #25D366;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.whatsapp-btn:hover {
+  background-color: #1ebe5d;
+  transform: scale(1.08);
 }
 </style>
-
-<script>
-function showPage(pageId) {
-  let pages = document.querySelectorAll("section");
-  pages.forEach(p => p.classList.remove("active"));
-  document.getElementById(pageId).classList.add("active");
-}
-</script>
-</head>
-
-<body>
-
-<nav>
-  <a href="#" onclick="showPage('about')">About</a>
-  <a href="#" onclick="showPage('courses')">Courses</a>
-  <a href="#" onclick="showPage('owner')">Owner</a>
-  <a href="#" onclick="showPage('subscribe')">Subscribe</a>
-  <a href="#" onclick="showPage('contact')">Contact</a>
-</nav>
-
-<!-- About Page -->
-<section id="about" class="active">
-<h1>KCS Technology Bhilai</h1>
-<p>
-KCS Technology Bhilai is a forward-moving firm driven by innovative ideas that inspire students to grow through modern technology and skill-based knowledge.
-</p>
-<p>
-With the tagline <b>“Let’s Grow Together,”</b> the firm believes in guiding students toward a future of achievement and success.
-</p>
-</section>
-
-<!-- Courses Page -->
-<section id="courses">
-<h1>Courses & Services</h1>
-
-<div class="card">
-<h3>Cybersecurity (Basics)</h3>
-<p>Learn fundamentals of cybersecurity.</p>
-<b>₹1000</b>
-</div>
-
-<div class="card">
-<h3>Startup Teens Plan</h3>
-<p>Develop entrepreneurial skills.</p>
-<b>₹200 / month</b>
-</div>
-
-<div class="card">
-<h3>Business Grow Support</h3>
-<p>Support for new businesses.</p>
-<b>₹300 / month</b>
-</div>
-
-<p>For more details, contact the owner.</p>
-</section>
-
-<!-- Owner Page -->
-<section id="owner">
-<h1>About the Owner</h1>
-<p>
-Mr. Krish Yadav is a young visionary leading KCS Technology Bhilai with innovative ideas to improve the nation's lifestyle.
-</p>
-<p>
-His vision is to transform students’ mindsets and make the nation independent in cybersecurity, business, and safety.
-</p>
-</section>
-
-<!-- Subscribe Page -->
-<section id="subscribe">
-<h1>Subscribe</h1>
-<p>Stay connected with KCS Technology.</p>
-
-<input type="email" placeholder="Enter your email"><br>
-<input type="tel" placeholder="Enter phone number"><br>
-<button>Subscribe</button>
-</section>
-
-<!-- Contact Page -->
-<section id="contact">
-<h1>Owner Details</h1>
-
-<p><b>Phone:</b><br>
-+91 9827991002<br>
-+91 9479022177</p>
-
-<p><b>Email:</b><br>
-yadavkrishh22@gmail.com</p>
-
-<p><b>Instagram:</b><br>
-@yadavkrishh22<br>
-@startupkrishh_2020</p>
-
-<p><b>Address:</b><br>
-L-16/A Maroda Sector<br>
-Bhilai – 490006, Durg, Chhattisgarh, India</p>
-</section>
-
-</body>
-</html>
